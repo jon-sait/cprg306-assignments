@@ -3,12 +3,11 @@
 import { useState } from "react";
 
 import Item from "./item";
-import items from "./items.json";
 
-export default function ItemList() {
+export default function ItemList(props) {
   const [sortBy, setSortBy] = useState("name");
 
-  let sortedItems = [...items];
+  let sortedItems = [...props.items];
 
   if (sortBy === "name") {
     sortedItems.sort((x, y) => x.name.localeCompare(y.name));
@@ -18,7 +17,7 @@ export default function ItemList() {
 
   return (
     <>
-      <div>
+      <div className="mt-8">
         <label htmlFor="sort">Sort by: </label>
         <button
           className={`${sortBy === "name" ? "bg-orange-500" : "bg-orange-700"} p-1 m-2 w-28`}
